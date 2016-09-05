@@ -217,6 +217,8 @@ class DocumentType(ModelSQL, ModelView):
     @classmethod
     def _trigger_handler(cls, records, trigger):
         "Handler called by trigger"
+        IndexBacklog = Pool().get('elasticsearch.index_backlog')
+
         return IndexBacklog.create_from_records(records)
 
     @classmethod
