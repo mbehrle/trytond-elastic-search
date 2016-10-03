@@ -210,13 +210,15 @@ class DocumentType(ModelSQL, ModelView):
             'on_write': True,
             'on_delete': True,
             'action_model': action_model.id,
-            'condition': 'True',
+            'condition': 'true',
             'action_function': '_trigger_handler',
         }])[0]
 
     @classmethod
     def _trigger_handler(cls, records, trigger):
         "Handler called by trigger"
+        IndexBacklog = Pool().get('elasticsearch.index_backlog')
+
         return IndexBacklog.create_from_records(records)
 
     @classmethod
