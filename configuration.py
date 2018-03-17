@@ -8,6 +8,8 @@ from trytond.config import config
 from pyes import ES
 from pyes.managers import Indices
 
+logger = logging.getLogger(__name__)
+
 __all__ = ['Configuration']
 
 
@@ -32,8 +34,6 @@ class Configuration(ModelSingleton, ModelSQL, ModelView):
         if not configuration.servers:
             return
 
-        logger = cls.get_logger()
-
         if not configuration.settings_updated:
             logger.warning('Settings are not updated on index')
 
@@ -42,13 +42,6 @@ class Configuration(ModelSingleton, ModelSQL, ModelView):
             default_indices=[configuration.index_name],
             **kwargs
         )
-
-    @classmethod
-    def get_logger(cls):
-        """
-        Returns a logger for this module
-        """
-        return logging.getLogger('trytond.modules.elasticsearch')
 
     @staticmethod
     def default_settings_updated():
