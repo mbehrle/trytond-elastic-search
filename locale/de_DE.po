@@ -147,7 +147,7 @@ msgid "Index Backlog"
 msgstr "Index Rückstand"
 
 msgctxt "model:ir.cron,name:cron_update_index"
-msgid "Elastic Search Index"
+msgid "Elasticsearch Index"
 msgstr "Elasticsearch Index"
 
 msgctxt "model:ir.ui.menu,name:menu_configuration"
